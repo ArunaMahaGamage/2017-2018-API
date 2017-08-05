@@ -36,6 +36,20 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         //
+        echo ($request->id);
+        echo '<br/>';
+
+        $customer_json = json_decode($request->id);
+
+        $customer = new Customer;
+
+        $customer->id = $customer_json->id;
+        $customer->name = $customer_json->name;
+        $customer->address = $customer_json->address;
+        $customer->customerphone = $customer_json->customerphone;
+
+        $customer->save();;
+        
     }
 
     /**
@@ -44,9 +58,16 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $customer)
+    public function show(Customer $customer, $id)
     {
         //
+        $customer = Customer::find($id);
+
+        $customer->toJson();
+
+        echo $customer;
+
+        // return view('customer.customer',$customer);
     }
 
     /**
@@ -70,6 +91,14 @@ class CustomerController extends Controller
     public function update(Request $request, Customer $customer)
     {
         //
+        $customer = $customer::find($request->id);
+
+        $customer->id = $customer_json->id;
+        $customer->name = $customer_json->name;
+        $customer->address = $customer_json->address;
+        $customer->customerphone = $customer_json->customerphone;
+
+        $customer->save();;
     }
 
     /**
