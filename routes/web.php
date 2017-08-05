@@ -34,7 +34,7 @@ Route::get('palvision/products/update/{id}', 'ProductController@update');
 
 Route::get('palvision/products/delete/{id}', 'ProductController@destroy');
 
-// 
+// sale
 Route::get('palvision/sale/insert/{name}/{age}/{class}', 'SaleController@store');
 
 Route::get('palvision/sale/retrive/{id}', 'SaleController@show');
@@ -43,13 +43,12 @@ Route::get('palvision/sale/update/{id}/{name}/{age}/{class}', 'SaleController@up
 
 Route::get('palvision/sale/delete/{id}', 'SaleController@destroy');
 
-//
-
-Route::get('palvision/shop/insert/{name}/{age}/{class}', 'ShopController@store');
+// shop
+Route::get('palvision/shop/insert/{id}', 'ShopController@store');
 
 Route::get('palvision/shop/retrive/{id}', 'ShopController@show');
 
-Route::get('palvision/shop/update/{id}/{name}/{age}/{class}', 'ShopController@update');
+Route::get('palvision/shop/update/{id}', 'ShopController@update');
 
 Route::get('palvision/shop/delete/{id}', 'ShopController@destroy');
 

@@ -36,6 +36,18 @@ class ShopController extends Controller
     public function store(Request $request)
     {
         //
+        echo ($request->id);
+        echo '<br/>';
+
+        $shop_json = json_decode($request->id);
+
+        $shop = new Shop;
+
+        $shop->id = $shop_json->id;
+        $shop->name = $shop_json->name;
+        $shop->address = $shop_json->address;
+
+        $shop->save();;
     }
 
     /**
@@ -44,9 +56,16 @@ class ShopController extends Controller
      * @param  \App\Shop  $shop
      * @return \Illuminate\Http\Response
      */
-    public function show(Shop $shop)
+    public function show(Shop $shop, Request $request)
     {
         //
+        $shop_json = json_decode($request->id);
+
+        $shop = $shop::find($shop_json->id);
+
+        $shop->toJson();
+
+        echo $shop;
     }
 
     /**
@@ -70,6 +89,15 @@ class ShopController extends Controller
     public function update(Request $request, Shop $shop)
     {
         //
+        $shop_json = json_decode($request->id);
+
+        $shop = $shop::find($shop_json->id);
+
+        $shop->id = $shop_json->id;
+        $shop->name = $shop_json->name;
+        $shop->address = $shop_json->address;
+
+        $shop->save();;
     }
 
     /**
@@ -78,8 +106,13 @@ class ShopController extends Controller
      * @param  \App\Shop  $shop
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Shop $shop)
+    public function destroy(Shop $shop, Request $request)
     {
         //
+        $shop_json = json_decode($request->id);
+
+        $shop = $shop::find($shop_json->id);
+
+        $shop->delete();
     }
 }
