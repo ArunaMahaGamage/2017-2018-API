@@ -36,6 +36,20 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
+        echo ($request->id);
+        echo '<br/>';
+
+        $product_json = json_decode($request->id);
+
+        $product = new Product;
+
+        $product->id = $product_json->id;
+        $product->price = $product_json->price;
+        $product->type = $product_json->type;
+        $product->manufacturer = $product_json->manufacturer;
+        $product->customer_id = $product_json->customer_id;
+
+        $product->save();;
     }
 
     /**
@@ -44,9 +58,16 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Product $product, Request $request)
     {
         //
+        $product_json = json_decode($request->id);
+
+        $product = $product::find($product_json->id);
+
+        $product->toJson();
+
+        echo $product;
     }
 
     /**
@@ -70,6 +91,17 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         //
+        $product_json = json_decode($request->id);
+
+        $product = $product::find($product_json->id);
+
+    //    $customer->id = $customer_json->id;
+        $product->id = $product_json->id;
+        $product->price = $product_json->price;
+        $product->type = $product_json->type;
+        $product->manufacturer = $product_json->manufacturer;
+
+        $product->save();;
     }
 
     /**
@@ -78,8 +110,13 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Request $request, Product $product)
     {
         //
+        $product_json = json_decode($request->id);
+
+        $product = $product::find($product_json->id);
+
+        $product->delete();
     }
 }
