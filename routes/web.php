@@ -52,12 +52,12 @@ Route::get('palvision/shop/update/{id}', 'ShopController@update');
 
 Route::get('palvision/shop/delete/{id}', 'ShopController@destroy');
 
-//
+// vender
 
-Route::get('palvision/vendor/insert/{name}/{age}/{class}', 'VendorController@store');
+Route::get('palvision/vendor/insert/{id}', 'VendorController@store');
 
 Route::get('palvision/vendor/retrive/{id}', 'VendorController@show');
 
-Route::get('palvision/vendor/update/{id}/{name}/{age}/{class}', 'VendorController@update');
+Route::get('palvision/vendor/update/{id}', 'VendorController@update');
 
 Route::get('palvision/vendor/delete/{id}', 'VendorController@destroy');

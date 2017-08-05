@@ -36,6 +36,18 @@ class VendorController extends Controller
     public function store(Request $request)
     {
         //
+        echo ($request->id);
+        echo '<br/>';
+
+        $vendor_json = json_decode($request->id);
+
+        $vendor = new Vendor;
+
+        $vendor->id = $vendor_json->id;
+        $vendor->name = $vendor_json->name;
+        $vendor->staffnumber = $vendor_json->staffnumber;
+
+        $vendor->save();;
     }
 
     /**
@@ -44,9 +56,16 @@ class VendorController extends Controller
      * @param  \App\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
-    public function show(Vendor $vendor)
+    public function show(Vendor $vendor, Request $request)
     {
         //
+        $vendor_json = json_decode($request->id);
+
+        $vendor = $vendor::find($vendor_json->id);
+
+        $vendor->toJson();
+
+        echo $vendor;
     }
 
     /**
@@ -70,6 +89,15 @@ class VendorController extends Controller
     public function update(Request $request, Vendor $vendor)
     {
         //
+        $vendor_json = json_decode($request->id);
+
+        $vendor = $vendor::find($vendor_json->id);
+
+        $vendor->id = $vendor_json->id;
+        $vendor->name = $vendor_json->name;
+        $vendor->staffnumber = $vendor_json->staffnumber;
+
+        $vendor->save();;
     }
 
     /**
@@ -78,8 +106,13 @@ class VendorController extends Controller
      * @param  \App\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vendor $vendor)
+    public function destroy(Request $request, Vendor $vendor)
     {
         //
+        $vendor_json = json_decode($request->id);
+
+        $vendor = $vendor::find($vendor_json->id);
+
+        $vendor->delete();
     }
 }
