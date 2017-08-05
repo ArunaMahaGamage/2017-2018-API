@@ -36,6 +36,23 @@ class SaleController extends Controller
     public function store(Request $request)
     {
         //
+        echo ($request->id);
+        echo '<br/>';
+
+        $sale_json = json_decode($request->id);
+
+        $sale = new Sale;
+
+        $sale->id = $sale_json->id;
+        $sale->products = $sale_json->products;
+        $sale->date = $sale_json->date;
+        $sale->sum_total = $sale_json->sum_total;
+
+        $sale->customer_id = $sale_json->customer_id;
+        $sale->shop_id = $sale_json->shop_id;
+        $sale->vendor_id = $sale_json->vendor_id;
+
+        $sale->save();;
     }
 
     /**
@@ -44,9 +61,16 @@ class SaleController extends Controller
      * @param  \App\Sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function show(Sale $sale)
+    public function show(Sale $sale, Request $request)
     {
         //
+        $sale_json = json_decode($request->id);
+
+        $sale = $sale::find($sale_json->id);
+
+        $sale->toJson();
+
+        echo $customer;
     }
 
     /**
@@ -70,6 +94,16 @@ class SaleController extends Controller
     public function update(Request $request, Sale $sale)
     {
         //
+        $sale_json = json_decode($request->id);
+
+        $sale = $sale::find($sale_json->id);
+
+        $sale->id = $sale_json->id;
+        $sale->products = $sale_json->products;
+        $sale->date = $sale_json->date;
+        $sale->sum_total = $sale_json->sum_total;
+
+        $sale->save();;
     }
 
     /**
@@ -78,8 +112,13 @@ class SaleController extends Controller
      * @param  \App\Sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sale $sale)
+    public function destroy(Request $request, Sale $sale)
     {
         //
+        $sale_json = json_decode($request->id);
+
+        $sale = $sale::find($sale_json->id);
+
+        $sale->delete();
     }
 }

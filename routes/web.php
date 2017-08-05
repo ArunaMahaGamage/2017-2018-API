@@ -35,11 +35,11 @@ Route::get('palvision/products/update/{id}', 'ProductController@update');
 Route::get('palvision/products/delete/{id}', 'ProductController@destroy');
 
 // sale
-Route::get('palvision/sale/insert/{name}/{age}/{class}', 'SaleController@store');
+Route::post('palvision/sale/insert', 'SaleController@store');
 
 Route::get('palvision/sale/retrive/{id}', 'SaleController@show');
 
-Route::get('palvision/sale/update/{id}/{name}/{age}/{class}', 'SaleController@update');
+Route::get('palvision/sale/update/{id}', 'SaleController@update');
 
 Route::get('palvision/sale/delete/{id}', 'SaleController@destroy');
 
