@@ -23,11 +23,13 @@ class CreateShopsTable extends Migration
             $table->primary('id');
 
         });
-
+        
+        /*
         Schema::table('shops', function (Blueprint $table) {
            $table->integer('product_id');
            $table->foreign('product_id')->references('id')->on('products');
         });
+        */
     }
 
     /**

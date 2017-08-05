@@ -28,10 +28,12 @@ class CreateSalesTable extends Migration
            $table->integer('customer_id');
            $table->foreign('customer_id')->references('id')->on('customers');
         });
+        /*
         Schema::table('sales', function (Blueprint $table) {
            $table->integer('product_id');
            $table->foreign('product_id')->references('id')->on('products');
         });
+        */
         Schema::table('sales', function (Blueprint $table) {
            $table->integer('shop_id');
            $table->foreign('shop_id')->references('id')->on('shops');
