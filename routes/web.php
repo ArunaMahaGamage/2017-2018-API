@@ -20,7 +20,7 @@ Route::get('palvision/customer/insert/{id}', 'CustomerController@store');
 
 Route::get('palvision/customer/retrive/{id}', 'CustomerController@show');
 
-Route::get('palvision/customer/update/{id}/{name}/{age}/{grade}', 'CustomerController@update');
+Route::get('palvision/customer/update/{id}', 'CustomerController@update');
 
 Route::get('palvision/customer/delete/{id}', 'CustomerController@destroy');
 

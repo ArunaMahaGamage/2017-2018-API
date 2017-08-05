@@ -58,10 +58,12 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $customer, $id)
+    public function show(Customer $customer, Request $request)
     {
         //
-        $customer = Customer::find($id);
+        $customer_json = json_decode($request->id);
+
+        $customer = $customer::find($customer_json->id);
 
         $customer->toJson();
 
@@ -91,9 +93,11 @@ class CustomerController extends Controller
     public function update(Request $request, Customer $customer)
     {
         //
-        $customer = $customer::find($request->id);
+        $customer_json = json_decode($request->id);
 
-        $customer->id = $customer_json->id;
+        $customer = $customer::find($customer_json->id);
+
+    //    $customer->id = $customer_json->id;
         $customer->name = $customer_json->name;
         $customer->address = $customer_json->address;
         $customer->customerphone = $customer_json->customerphone;
@@ -107,8 +111,13 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer)
+    public function destroy(Request $request, Customer $customer)
     {
         //
+        $customer_json = json_decode($request->id);
+
+        $customer = $customer::find($customer_json->id);
+
+        $customer->delete();
     }
 }
