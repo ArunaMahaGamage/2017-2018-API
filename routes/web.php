@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 // Customer
-Route::get('palvision/customer/insert/{id}', 'CustomerController@store');
+Route::post('palvision/customer/insert/', 'CustomerController@store');
 
 Route::get('palvision/customer/retrive/{id}', 'CustomerController@show');
 

@@ -36,19 +36,37 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         //
-        echo ($request->id);
-        echo '<br/>';
 
-        $customer_json = json_decode($request->id);
+        /*echo ("ok");
+        echo '<br/>';
+        echo (csrf_token());
+        echo '<br/>';*/
+
+        $customer_id = $request->input('id');
+        $customer_name = $request->input('name');
+        $customer_address = $request->input('address');
+        $customer_phone = $request->input('phone');
+
+
+        /*$customer_json = json_decode($json);*/
 
         $customer = new Customer;
 
-        $customer->id = $customer_json->id;
-        $customer->name = $customer_json->name;
-        $customer->address = $customer_json->address;
-        $customer->customerphone = $customer_json->customerphone;
+        $customer->id = $customer_id;
+        $customer->name = $customer_name;
+        $customer->address = $customer_address;
+        $customer->customerphone = $customer_phone;
+
+
 
         $customer->save();;
+
+        echo json_encode($customer);
+
+        /*echo '{"status":"';
+        echo $customer_id;
+        echo '"}';*/
+
         
     }
 
